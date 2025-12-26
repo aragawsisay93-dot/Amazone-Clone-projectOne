@@ -1,0 +1,103 @@
+/* Backdrop dims page content */
+.cart-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3); /* dim background */
+  z-index: 1500;
+  display: flex;
+  justify-content: center; /* horizontal center */
+  overflow-y: auto;
+}
+
+/* Cart dropdown container */
+.cart-container {
+  background: #fff;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 450px;       /* cart width */
+  margin-top: 60px;       /* below header, adjust to your header height */
+  padding: 1rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 80px); /* stays below header and within viewport */
+  overflow-y: auto; 
+  position: sticky; /* sticky below header */
+  top: 0; /* used with margin-top for spacing below header */
+}
+
+/* Header inside cart */
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.cart-header h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.close-btn {
+  font-size: 1.5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* Cart items */
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cart-items .product-card {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.cart-items .product-card img {
+  width: 50px;  /* smaller image */
+  height: 50px;
+  object-fit: contain;
+}
+
+.cart-items .product-card .product-info {
+  flex: 1;
+}
+
+.cart-items .product-card .product-info h4 {
+  font-size: 0.85rem;
+  margin: 0 0 0.25rem 0;
+}
+
+.cart-items .product-card .product-info p {
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+/* Subtotal and checkout */
+.cart-subtotal {
+  border-top: 1px solid #ddd;
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+.checkout-btn {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  background-color: #f0c14b;
+  border: 1px solid #a88734;
+  border-radius: 4px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  color: #111;
+}

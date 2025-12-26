@@ -1,0 +1,74 @@
+/* LOWER HEADER RESET */
+.lower-header,
+.lower-header ul,
+.lower-header li {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* LOWER HEADER CONTAINER */
+.lower-header {
+  background-color: #131921;
+  color: white;
+  width: 100%;
+  position: sticky;
+  top: 60px;       /* below main header */
+  z-index: 999;
+  padding: 6px 20px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+/* MENU ITEMS */
+.lower-header ul {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* left align */
+  gap: 18px;                   /* spacing between items */
+  width: 100%;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+/* MENU ITEM */
+.lower-header li {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 4px 6px;
+  transition: color 0.2s ease;
+}
+
+/* ALL MENU ICON */
+.lower-header li.menu-icon {
+  font-weight: bold;
+  gap: 6px;
+}
+
+/* HOVER EFFECT */
+.lower-header li:hover {
+  color: #febd69;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .lower-header ul {
+    flex-direction: column;
+    align-items: flex-start;
+    display: none;
+    gap: 10px;
+  }
+
+  .lower-header ul.open {
+    display: flex;
+  }
+
+  .lower-header li.menu-icon {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+}
