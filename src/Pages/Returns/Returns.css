@@ -1,0 +1,34 @@
+.returns-page {
+  padding: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  gap: 14px;
+}
+
+.returns-card {
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 14px;
+  background: #fff;
+}
+
+.returns-btn {
+  margin-top: 10px;
+  height: 42px;
+  padding: 0 14px;
+  border: none;
+  border-radius: 10px;
+  background: #ffd814;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.returns-btn:hover {
+  background: #f7ca00;
+}
+
+.returns-btn.secondary {
+  background: #fff;
+  border: 1px solid #d5d9d9;
+}

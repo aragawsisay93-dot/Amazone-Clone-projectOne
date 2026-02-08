@@ -1,3 +1,4 @@
+
 import React, { useContext, useState, useEffect } from "react";
 import "./Header.css";
 import AmazonLogo from "../../assets/img/Amazonelogo.png";
@@ -11,16 +12,18 @@ import {
 } from "react-icons/fa";
 import { DataContext } from "../DataProvider/DataProvider";
 import CartSidebar from "../../Pages/Cart/CartSidebar";
+import { Link } from "react-router-dom";
 
 function Header() {
   const { state } = useContext(DataContext);
+
   const [showCart, setShowCart] = useState(false);
   const [showLang, setShowLang] = useState(false);
   const [showAccount, setShowAccount] = useState(false);
   const [showLocation, setShowLocation] = useState(false);
 
   const [selectedAddress, setSelectedAddress] = useState(
-    localStorage.getItem("amazonSelectedAddress") || "Select your address"
+    localStorage.getItem("amazonSelectedAddress") || "Select your address",
   );
 
   const addresses = [
@@ -33,14 +36,17 @@ function Header() {
     localStorage.setItem("amazonSelectedAddress", selectedAddress);
   }, [selectedAddress]);
 
+  const basketCount = state?.basket?.length || 0;
+
   return (
     <>
       <header className="header">
         {/* LEFT */}
         <div className="header-left">
-          <a href="/" className="nav-hover logo-wrap">
+          {/* LOGO */}
+          <Link to="/" className="nav-hover logo-wrap">
             <img src={AmazonLogo} alt="Amazon" />
-          </a>
+          </Link>
 
           {/* LOCATION */}
           <div
@@ -58,6 +64,7 @@ function Header() {
             {showLocation && (
               <div className="location-dropdown">
                 <p className="location-title">Choose a delivery address</p>
+
                 <ul className="location-list">
                   {addresses.map((addr) => (
                     <li
@@ -72,7 +79,10 @@ function Header() {
                     </li>
                   ))}
                 </ul>
-                <button className="add-address-btn">Add a new address</button>
+
+                <button className="add-address-btn" type="button">
+                  Add a new address
+                </button>
               </div>
             )}
           </div>
@@ -80,15 +90,15 @@ function Header() {
 
         {/* SEARCH */}
         <div className="header-search">
-          <select>
+          <select aria-label="Search category">
             <option>All</option>
             <option>Books</option>
             <option>Electronics</option>
           </select>
 
-          <input placeholder="Search Amazon" />
+          <input placeholder="Search Amazon" aria-label="Search Amazon" />
 
-          <button>
+          <button type="button" aria-label="Search">
             <AiOutlineSearch size={24} />
           </button>
         </div>
@@ -121,7 +131,9 @@ function Header() {
                 <label>
                   <input type="radio" name="lang" /> Français - FR
                 </label>
-                <a href="#">Learn more</a>
+                <a href="#" onClick={(e) => e.preventDefault()}>
+                  Learn more
+                </a>
               </div>
             )}
           </div>
@@ -143,9 +155,14 @@ function Header() {
             {showAccount && (
               <div className="account-dropdown">
                 <div className="account-top">
-                  <button className="sign-in-btn">Sign in</button>
+                  <Link to="/auth/login">
+                    <button className="sign-in-btn" type="button">
+                      Sign in
+                    </button>
+                  </Link>
+
                   <p>
-                    New customer? <a href="#">Start here.</a>
+                    New customer? <Link to="/auth/register">Start here.</Link>
                   </p>
                 </div>
 
@@ -163,7 +180,9 @@ function Header() {
                     <h4>Your Account</h4>
                     <ul>
                       <li>Account</li>
-                      <li>Orders</li>
+                      <li>
+                        <Link to="/orders">Orders</Link>
+                      </li>
                       <li>Recommendations</li>
                       <li>Browsing History</li>
                       <li>Watchlist</li>
@@ -174,21 +193,34 @@ function Header() {
             )}
           </div>
 
-          {/* RETURNS */}
-          <div className="nav-hover text-block">
+          {/* RETURNS & ORDERS */}
+          <Link to="/orders" className="nav-hover text-block">
             <strong>Returns</strong>
             <br />
             <strong>& Orders</strong>
-          </div>
+          </Link>
 
           {/* CART */}
           <div
             className="nav-hover cart-wrap"
-            onClick={() => setShowCart(!showCart)}
+            onClick={() => setShowCart((prev) => !prev)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") setShowCart((prev) => !prev);
+            }}
           >
             <FaShoppingCart className="cart-icon" />
-            <span className="cart-count">{state.basket.length}</span>
-            <strong>Cart</strong>
+            <span className="cart-count">{basketCount}</span>
+
+            {/* Cart text navigates to /cart without toggling sidebar */}
+            <Link
+              to="/cart"
+              className="cart-link"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <strong>Cart</strong>
+            </Link>
           </div>
         </div>
       </header>
@@ -196,9 +228,7 @@ function Header() {
       <LowerHeader />
 
       {/* Cart Sidebar */}
-      {showCart && (
-        <CartSidebar basket={state.basket} close={() => setShowCart(false)} />
-      )}
+      {showCart && <CartSidebar close={() => setShowCart(false)} />}
     </>
   );
 }

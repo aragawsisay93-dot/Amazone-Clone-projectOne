@@ -27,7 +27,7 @@
 /* ================= LEFT ================= */
 .header-left {
   display: flex;
-  align-items: stretch;
+  align-items: center;
   gap: 10px;
   height: 100%;
 }
@@ -35,16 +35,15 @@
 .logo-wrap {
   display: flex;
   align-items: center;
-  justify-content: center;    
-  padding: 0;             
-  margin: 2px;              
-  height: 100%;           
+  justify-content: center;
+  margin: 2px;
+  height: 100%;
 }
 
 .logo-wrap img {
-  width: auto;           
-  height: 90%;           
-  object-fit: contain;    
+  width: auto;
+  height: 90%;
+  object-fit: contain;
   display: block;
 }
 
@@ -81,7 +80,7 @@
   background: #fff;
   color: #111;
   padding: 12px;
-  border-radius: 4px;
+  border-radius: 6px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.3);
   z-index: 2000;
 }
@@ -105,7 +104,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 3px;
+  border-radius: 6px;
 }
 
 .location-list li:hover {
@@ -125,11 +124,11 @@
 
 .add-address-btn {
   width: 100%;
-  padding: 6px 0;
+  padding: 8px 0;
   font-size: 13px;
   background: #ffd814;
   border: 1px solid #fcd200;
-  border-radius: 3px;
+  border-radius: 6px;
   font-weight: 700;
   cursor: pointer;
 }
@@ -149,8 +148,8 @@
 .header-search select {
   background: #f3f3f3;
   border: none;
-  padding: 0 8px;
-  border-radius: 4px 0 0 4px;
+  padding: 0 10px;
+  border-radius: 6px 0 0 6px;
   font-size: 12px;
 }
 
@@ -159,13 +158,14 @@
   border: none;
   padding: 0 10px;
   font-size: 15px;
+  outline: none;
 }
 
 .header-search button {
   background: #febd69;
   border: none;
   padding: 0 16px;
-  border-radius: 0 4px 4px 0;
+  border-radius: 0 6px 6px 0;
   cursor: pointer;
 }
 
@@ -183,7 +183,7 @@
 .lang-wrap {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   position: relative;
 }
 
@@ -205,7 +205,7 @@
   background: #fff;
   color: #111;
   padding: 10px;
-  border-radius: 4px;
+  border-radius: 6px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.3);
   z-index: 2000;
 }
@@ -218,7 +218,7 @@
 .lang-dropdown label {
   display: block;
   font-size: 13px;
-  margin: 4px 0;
+  margin: 6px 0;
   cursor: pointer;
 }
 
@@ -231,12 +231,13 @@
   position: absolute;
   top: 52px;
   left: -120px;
-  width: 500px;
+  width: 520px;
   background: #fff;
   color: #111;
-  border-radius: 4px;
+  border-radius: 6px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.35);
   z-index: 2000;
+  overflow: hidden;
 }
 
 .account-top {
@@ -248,11 +249,11 @@
 .sign-in-btn {
   background: #ffd814;
   border: 1px solid #fcd200;
-  padding: 6px 80px;
+  padding: 8px 80px;
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
-  border-radius: 3px;
+  border-radius: 6px;
 }
 
 .sign-in-btn:hover {
@@ -266,7 +267,6 @@
 
 .account-top a {
   color: #007185;
-  text-decoration: none;
 }
 
 .account-top a:hover {
@@ -335,21 +335,18 @@
   font-size: 13px;
   font-weight: 700;
   padding: 1px 6px;
-  border-radius: 50%;
+  border-radius: 999px;
 }
 
-/* ================= CART SIDEBAR (NEW) ================= */
+/* Cart overlay animation (if used) */
 .cart-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background-color: rgba(0,0,0,0.5);
   z-index: 1500;
   display: flex;
   justify-content: flex-end;
-  animation: fadeIn 0.3s;
+  animation: fadeIn 0.25s;
 }
 
 .cart-sidebar {
@@ -362,74 +359,12 @@
   position: relative;
   box-shadow: -3px 0 10px rgba(0,0,0,0.2);
   transform: translateX(100%);
-  animation: slideIn 0.3s forwards;
+  animation: slideIn 0.25s forwards;
 }
 
-.close-btn {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 2rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.cart-item {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.cart-item img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-}
-
-.cart-item-info {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.quantity-controls {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.quantity-controls button {
-  width: 25px;
-  height: 25px;
-  border: 1px solid #ccc;
-  background: #f0f0f0;
-  cursor: pointer;
-}
-
-.remove-btn {
-  background: none;
-  border: none;
-  color: #007185;
-  cursor: pointer;
-  padding: 0;
-  margin-top: 0.5rem;
-}
-
-.cart-subtotal {
-  font-weight: bold;
-  font-size: 1.2rem;
-  margin-top: 1rem;
-}
-
-/* ================= ANIMATIONS ================= */
 @keyframes slideIn {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0%);
-  }
+  from { transform: translateX(100%); }
+  to { transform: translateX(0%); }
 }
 
 @keyframes fadeIn {

@@ -1,6 +1,15 @@
+/* .loader-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+} */
+
 .loader-container {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 50vh;
+  font-size: 16px;
+  color: #333;
 }

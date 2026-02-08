@@ -1,5 +1,6 @@
 
-import { Routes, Route,Navigate } from "react-router-dom";
+
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useContext } from "react";
 import { DataContext } from "./Components/DataProvider/DataProvider";
 
@@ -14,22 +15,22 @@ import Register from "./Pages/Auth/Register";
 import Cart from "./Pages/Cart/Cart";
 import Payment from "./Pages/Payment/Payment";
 import Orders from "./Pages/Orders/Orders";
+import Returns from "./Pages/Returns/Returns"; // (add file below)
 import Results from "./Pages/Results/Result";
 import ProductDetail from "./Pages/ProductDetail/ProductDetail";
 
 function Routing() {
-  const { user } = useContext(DataContext);
+  const { state } = useContext(DataContext);
+  const user = state.user;
 
   return (
     <Routes>
-      {/* Main Layout */}
       <Route element={<LayOut />}>
         <Route index element={<Landing />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/category/:categoryCardName" element={<Results />} />
         <Route path="/products/:productId" element={<ProductDetail />} />
 
-        {/* Protected Routes */}
         <Route
           path="/payments"
           element={
@@ -46,11 +47,17 @@ function Routing() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/returns"
+          element={
+            <ProtectedRoute user={user}>
+              <Returns />
+            </ProtectedRoute>
+          }
+        />
       </Route>
 
-      {/* Auth Layout */}
       <Route element={<AuthLayout />}>
-        {/* Redirect /auth → /auth/login */}
         <Route path="/auth" element={<Navigate to="/auth/login" replace />} />
 
         <Route
@@ -71,7 +78,6 @@ function Routing() {
         />
       </Route>
 
-      {/* Catch-all route */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

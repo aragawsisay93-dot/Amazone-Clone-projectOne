@@ -1,35 +1,29 @@
-/* Backdrop dims page content */
 .cart-backdrop {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.3); /* dim background */
+  inset: 0;
+  background: rgba(0,0,0,0.3);
   z-index: 1500;
   display: flex;
-  justify-content: center; /* horizontal center */
+  justify-content: center;
   overflow-y: auto;
 }
 
-/* Cart dropdown container */
 .cart-container {
   background: #fff;
-  border-radius: 8px;
+  border-radius: 12px;
   width: 90%;
-  max-width: 450px;       /* cart width */
-  margin-top: 60px;       /* below header, adjust to your header height */
+  max-width: 450px;
+  margin-top: 60px;
   padding: 1rem;
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
   display: flex;
   flex-direction: column;
-  max-height: calc(100vh - 80px); /* stays below header and within viewport */
-  overflow-y: auto; 
-  position: sticky; /* sticky below header */
-  top: 0; /* used with margin-top for spacing below header */
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  position: sticky;
+  top: 0;
 }
 
-/* Header inside cart */
 .cart-header {
   display: flex;
   justify-content: space-between;
@@ -39,7 +33,7 @@
 
 .cart-header h2 {
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: 800;
 }
 
 .close-btn {
@@ -49,21 +43,21 @@
   cursor: pointer;
 }
 
-/* Cart items */
 .cart-items {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
 .cart-items .product-card {
   display: flex;
   gap: 0.5rem;
   padding: 0.5rem 0;
+  border-bottom: 1px solid #f1f1f1;
 }
 
 .cart-items .product-card img {
-  width: 50px;  /* smaller image */
+  width: 50px;
   height: 50px;
   object-fit: contain;
 }
@@ -73,31 +67,36 @@
 }
 
 .cart-items .product-card .product-info h4 {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   margin: 0 0 0.25rem 0;
 }
 
 .cart-items .product-card .product-info p {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   margin: 0;
+  color: #555;
 }
 
-/* Subtotal and checkout */
 .cart-subtotal {
   border-top: 1px solid #ddd;
   margin-top: 1rem;
   padding-top: 1rem;
+  font-weight: 800;
 }
 
 .checkout-btn {
   display: block;
   width: 100%;
-  padding: 0.5rem;
-  background-color: #f0c14b;
-  border: 1px solid #a88734;
-  border-radius: 4px;
-  font-weight: 600;
+  padding: 0.75rem;
+  background-color: #ffd814;
+  border: 1px solid #fcd200;
+  border-radius: 10px;
+  font-weight: 800;
   text-align: center;
-  text-decoration: none;
   color: #111;
+  cursor: pointer;
+}
+
+.checkout-btn:hover {
+  background: #f7ca00;
 }
